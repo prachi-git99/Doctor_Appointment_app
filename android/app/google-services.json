@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "41228415268",
+    "project_id": "doctor-firebase-4e321",
+    "storage_bucket": "doctor-firebase-4e321.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41228415268:android:7cf955c8efd60bea1183b1",
+        "android_client_info": {
+          "package_name": "com.example.doctors_appointment_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41228415268-fni5q8jcrijrcb52inlh95lh8dcbkc72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfGWdITXWw2swrKczJDWoWonL5fCl_gRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41228415268-fni5q8jcrijrcb52inlh95lh8dcbkc72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
