@@ -5,6 +5,7 @@ class User {
   String email;
   String uid;
 
+
   User(
       {required this.name,
         required this.email,

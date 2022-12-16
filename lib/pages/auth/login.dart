@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
               radius:45,
               backgroundColor: Colors.blue[900],
               child: CircleAvatar(
-                backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/5996/5996051.png'),
+                backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/5128/5128547.png'),
                 radius:42,
               ),
             ), ),

@@ -20,17 +20,30 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.blue[900],
+      backgroundColor:Colors.white,
       body: Container(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child:CircleAvatar(
+                radius:45,
+                backgroundColor: Colors.blue[900],
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/5128/5128547.png'),
+                  radius:42,
+                ),
+              ), ),
+
+            const SizedBox(
+              height:10,
+            ),
             Text('Doctor G',
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.blue[900],
                 fontSize: 32,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w300,
               ),
             ),
             const SizedBox(
@@ -39,6 +52,7 @@ class _RegisterState extends State<Register> {
 
             Container(
               width: MediaQuery.of(context).size.width,
+              height: 55,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: _usernameController,
@@ -46,7 +60,7 @@ class _RegisterState extends State<Register> {
                   prefixIcon: Icon(Icons.person),
                   labelText: 'Username',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   iconColor: Colors.black,
                 ),
@@ -57,6 +71,7 @@ class _RegisterState extends State<Register> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
+              height: 55,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: _emailController,
@@ -64,7 +79,7 @@ class _RegisterState extends State<Register> {
                   prefixIcon: Icon(Icons.email),
                   labelText: 'Email',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   iconColor: Colors.black,
                 ),
@@ -75,6 +90,7 @@ class _RegisterState extends State<Register> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
+              height: 55,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: _passwordController,
@@ -83,7 +99,7 @@ class _RegisterState extends State<Register> {
                   prefixIcon: Icon(Icons.key),
                   labelText: 'Password',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   iconColor: Colors.black,
                 ),
@@ -96,7 +112,7 @@ class _RegisterState extends State<Register> {
               width: MediaQuery.of(context).size.width - 40,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.blue[900],
                 borderRadius: const BorderRadius.all(
                   Radius.circular(25),
                 ),
@@ -114,9 +130,9 @@ class _RegisterState extends State<Register> {
                   child: Text(
                     'Register',
                     style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontSize: 19,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ),
@@ -132,9 +148,9 @@ class _RegisterState extends State<Register> {
                 const Text(
                   'Already have an account? ',
                   style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.indigo,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
                 InkWell(
@@ -144,7 +160,7 @@ class _RegisterState extends State<Register> {
 
                   child: Text(
                     'Login',
-                    style: TextStyle(fontSize: 20, color: Colors.blue[700],fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize:18, color: Colors.blue[700],fontWeight: FontWeight.w500),
                   ),
                 ),
               ],
@@ -157,7 +173,7 @@ class _RegisterState extends State<Register> {
               onTap: (){},
               child: Text(
                 'Forgot password ?',
-                style: TextStyle(fontSize: 20, color: Colors.blue[700],fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize:16, color: Colors.blue[700],fontWeight: FontWeight.w400),
               ),
             ),
 

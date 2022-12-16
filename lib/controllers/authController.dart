@@ -1,4 +1,3 @@
-
 import 'package:doctor_g/pages/UserProfile.dart';
 import 'package:doctor_g/pages/edit_profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +8,9 @@ import 'package:doctor_g/constant.dart';
 import 'package:doctor_g/models/user.dart' as model;
 import 'package:doctor_g/models/userProfile.dart' as model;
 import 'package:doctor_g/pages/auth/login.dart';
+import 'package:doctor_g/pages/auth/VerifyEmail.dart';
 import 'package:doctor_g/pages/HomePage.dart';
+
 
 class AuthController extends GetxController {
   static AuthController instance = Get.put(AuthController());
@@ -31,7 +32,8 @@ class AuthController extends GetxController {
       Get.offAll(() => Login());
     } else {
       //Get.offAll(() =>  EditProfilePage());
-      Get.offAll(() =>  HomePage(uid:authController.user.uid));
+      Get.offAll(()=>VerifyEmail());
+      //Get.offAll(() =>  HomePage(uid:authController.user.uid));
     }
   }
 
@@ -46,7 +48,6 @@ class AuthController extends GetxController {
           email: email,
           password: password,
         );
-
         model.User user = model.User(
           name: username,
           email: email,
@@ -77,7 +78,7 @@ class AuthController extends GetxController {
         print("st");
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        print("k");
+        print(user);
       } else {
         Get.snackbar(
           'Error Logging in',
