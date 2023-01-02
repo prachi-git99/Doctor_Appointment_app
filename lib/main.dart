@@ -40,8 +40,8 @@ class Doctor extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        //"/":(context) => HomePage(),
-        "/":(context) => Login(),
+        "/":(context) => HomePage(uid:authController.user.uid),
+        //"/":(context) => Login(),
         Routes.homePageRoute: (context) => HomePage(uid:authController.user.uid),
         Routes.userProfileRoute: (context) => UserProfile(uid:authController.user.uid),
         Routes.imageUploadRoute: (context) => ImageUpload(),

@@ -20,9 +20,11 @@ class _HomePageState extends State<HomePage> {
   final CategoryController categoryController = Get.put(CategoryController());
   final SpecialistsController specialistsController = Get.put(SpecialistsController());
 
+
   @override
   void initState() {
     super.initState();
+    authController.update();
     homePageController.updateUserId(widget.uid);
     categoryController.update();
     specialistsController.update();

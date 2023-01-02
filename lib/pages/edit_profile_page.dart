@@ -37,7 +37,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   _genderController.text,
                   _bloodgrpController.text
                 );
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePage(uid: authController.user.uid)));
+                //Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePage(uid: authController.user.uid)));
               },
               child:  Container(
                 height: 50,

@@ -31,9 +31,10 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAll(() => Login());
     } else {
-      //Get.offAll(() =>  EditProfilePage());
-      Get.offAll(()=>VerifyEmail());
-      //Get.offAll(() =>  HomePage(uid:authController.user.uid));
+      //Get.offAll(() => EditProfilePage());
+
+      //Get.offAll(()=>VerifyEmail());
+      Get.offAll(() =>  HomePage(uid:authController.user.uid));
     }
   }
 
@@ -57,6 +58,10 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(cred.user!.uid)
             .set(user.toJson());
+        print(user.name);
+        print(user.email);
+        Get.offAll(()=>VerifyEmail());
+        //Get.offAll(() => EditProfilePage());
 
       } else {
         Get.snackbar(
@@ -99,17 +104,24 @@ class AuthController extends GetxController {
 
   void editProfile(String username, String email, String phone,String age, String gender, String bloodgrp) async{
       try{
+          if(username.isNotEmpty && email.isNotEmpty && phone.isNotEmpty && age.isNotEmpty && gender.isNotEmpty && bloodgrp.isNotEmpty){
+            model.UserProfile userProfile = model.UserProfile(
+              name: username,
+              email: email,
+              phone: phone,
+              age: age,
+              bloodGrp: bloodgrp,
+              gender: gender,
+            );
+            await firestore.collection('users').doc(authController.user.uid).collection('UserProfile').doc(user.uid).set(userProfile.toJson());
+            //Get.offAll(()=>VerifyEmail());
+            Get.offAll(() => HomePage(uid: authController.user.uid));
+          }else {
+            Get.snackbar('Oops !! Error',
+              'Please enter all the fields',
+            );
+          }
           //final DocumentReference documentReference= FirebaseFirestore.instance.collection("UserProfile").doc(authController.user.uid);
-          model.UserProfile userProfile = model.UserProfile(
-            name: username,
-            email: email,
-            phone: phone,
-            age: age,
-            bloodGrp: bloodgrp,
-            gender: gender,
-          );
-          await firestore.collection('users').doc(authController.user.uid).collection('UserProfile').doc(user.uid).set(userProfile.toJson());
-
       }catch(e){
         Get.snackbar(
           'Please enter all the fields',

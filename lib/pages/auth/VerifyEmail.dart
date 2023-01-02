@@ -1,6 +1,7 @@
 import 'package:doctor_g/constant.dart';
 import 'dart:async';
 import 'package:doctor_g/pages/HomePage.dart';
+import 'package:doctor_g/pages/edit_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -23,8 +24,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
     isEmailVerified=FirebaseAuth.instance.currentUser!.emailVerified;
     if(!isEmailVerified){
       sendVerificationEmail();
-
-      timer=Timer.periodic(Duration(seconds:10),(_)=>checkEmailVerified(),);
+      timer=Timer.periodic(Duration(seconds:5),(_)=>checkEmailVerified(),);
     }
   }
   @override
@@ -47,7 +47,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
       setState(()=>canResendEmail=false);
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(seconds:10));
       setState(()=>canResendEmail=true);
 
     }catch(e){
@@ -58,9 +58,9 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ?HomePage(uid: authController.user.uid)
+      //?HomePage(uid: authController.user.uid)
+      ?EditProfilePage()
       : Scaffold(
-
           body: Padding(
             padding: EdgeInsets.all((16.0)),
             child: Column(
