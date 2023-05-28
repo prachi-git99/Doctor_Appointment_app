@@ -18,6 +18,7 @@ class _AllSpecialistsState extends State<AllSpecialists> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text("Specialists",style: TextStyle(color: Colors.blue),),
         leading: BackButton(color: Colors.blue,),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -63,7 +64,7 @@ Widget specialists(image,name,speciality,rating)
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
         boxShadow: [BoxShadow(
-          color: Colors.blue,
+          color: Colors.grey,
           blurRadius: 6.0,
         )],
       ),

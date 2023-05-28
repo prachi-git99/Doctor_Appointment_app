@@ -16,6 +16,7 @@ class _AllCategoryState extends State<AllCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  AppBar(
+        title: Text("Categories",style: TextStyle(color: Colors.blue),),
         leading: BackButton(
           color: Colors.blue,
         ),

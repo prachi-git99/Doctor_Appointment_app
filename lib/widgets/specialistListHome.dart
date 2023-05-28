@@ -20,7 +20,7 @@ class _SpecialistsState extends State<Specialists> {
       child: Container(
         margin: EdgeInsets.only(left: 20, right: 20),
         child: ListView.builder(
-          itemCount:2,
+          itemCount:3,
           itemBuilder: (context, index){
             return GestureDetector(
               onTap: () {

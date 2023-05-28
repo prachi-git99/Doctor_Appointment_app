@@ -8,6 +8,7 @@ import 'package:doctor_g/controllers/homePageController.dart';
 import 'package:doctor_g/constant.dart';
 import 'package:doctor_g/controllers/categoryController.dart';
 import 'package:doctor_g/controllers/specialistListController.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
   final String uid;
@@ -23,12 +24,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
+    // super.initState();
     authController.update();
     homePageController.updateUserId(widget.uid);
     categoryController.update();
     specialistsController.update();
+    super.initState();
   }
+
+
+   var slidersList=["https://i.pinimg.com/736x/bf/ac/ad/bfacadfae9215c455274bf153c8dd1aa.jpg",
+     "https://flymediatech.in/wp-content/uploads/2020/03/How-important-is-digital-marketing-for-medical-professionals.jpg",
+     "https://www.techugo.com/blog/wp-content/uploads/2020/10/Step-by-step-guide-to-build-an-on-demand-pediatrics-app.png",];
   @override
   Widget build(BuildContext context)  {
         Size size = MediaQuery.of(context).size;
@@ -73,187 +80,203 @@ class _HomePageState extends State<HomePage> {
 
               body: Container(
                   decoration: BoxDecoration(
-                  color: Colors.grey[100],
+                  color: Colors.grey[200],
                   borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
+                   ),
                   ),
-                  ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 20, left: 20),
-                    child: Text(
-                      controller.user['name'],
-                      style:TextStyle(
-                      fontSize:16,
-                      color: Colors.black,
+                child: Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 20, left: 20),
+                      child: Text(
+                        "Hello, ${controller.user['name']}",
+                        style:TextStyle(
+                        fontSize:16,
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                        ),
+                        ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 5, left: 20),
+                      child: Text(
+                      "Welcome Back,",
+                      style: TextStyle(
+                      color: Color(0xff363636),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
                       ),
                       ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 20),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 25, left: 20, right: 20),
+                      width: size.width,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                          color: Color(0x14000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 15,
+                          spreadRadius: 0,
+                          ),
+                        ],
+                      ),
+                    child: Row(
+                    children: [
+                    Expanded(
+                    flex: 5,
+                    child: Container(
+                    margin: EdgeInsets.only(left: 10, right: 10),
+                    child: TextField(
+                    maxLines: 1,
+                    autofocus: false,
+                    style: TextStyle(color: Color(0xff107163), fontSize:16),
+                    decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Search..',
+                    ),
+                    cursorColor: Color(0xff107163),
+                    ),
+                    ),
+                    ),
+                    Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, Routes.searchRoute);
+                      },
+                      child: Container(
+                      decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
+                      child: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                      size: 25,
+                      ),
+                      ),
+                      ),
+                    ),
+                    ),
+                    ],
+                    ),
+                    ),
+                      // Container(
+                      //   child:Image.network("https://img.freepik.com/premium-vector/online-doctor-with-computer_23-2148525681.jpg?w=2000"),
+                      // ),
+                      10.heightBox,
+                      VxSwiper.builder(
+                          aspectRatio:16/9,
+                          autoPlay: true,
+                          height: 150,
+                          viewportFraction: 0.7,
+                          enlargeCenterPage:true,
+                          itemCount:slidersList.length, itemBuilder: (context,index){
+                        return Image.network(slidersList[index],fit: BoxFit.cover,).box.rounded.clip(Clip.antiAlias).margin(EdgeInsets.symmetric(horizontal: 8)).make();
+                      }),
+                      10.heightBox,
+                      Container(
+                    width:size.width ,
+                    margin: EdgeInsets.only(top:20,left:20),
+                    child: Stack(
+                    fit: StackFit.loose,
+                    children: [
+                    Container(
                     child: Text(
-                    "Welcome Back,",
+                    "Category",
+                    style: TextStyle(
+                    color: Colors.black,
+                    fontSize:18,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w700,
+                    ),
+                    ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, Routes.allCategoryRoute);
+                      },
+                      child: Container(
+                      margin: EdgeInsets.only(right: 20, top: 1),
+                      child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                      'See all',
+                      style: TextStyle(
+                      color: Color(0xff5e5d5d),
+                      fontSize: 16,
+                      fontFamily: 'Roboto',
+                      ),
+                      ),
+                      ),
+                      ),
+                    )
+                    ],
+                    ),
+                    ),
+
+                      Container(
+                      width: size.width,
+                      height: 155,
+                      child: Category(),
+                    ),
+
+                    Container(
+                    width: size.width,
+                    margin: EdgeInsets.only(top: 20, left: 20),
+                    child: Stack(
+                    fit: StackFit.loose,
+                    children: [
+                    Container(
+                    child: Text(
+                    'Available Specialists',
                     style: TextStyle(
                     color: Color(0xff363636),
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
                     fontFamily: 'Roboto',
-                    ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 25, left: 20, right: 20),
-                    width: size.width,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                        color: Color(0x14000000),
-                        offset: Offset(0, 10),
-                        blurRadius: 15,
-                        spreadRadius: 0,
-                        ),
-                      ],
-                    ),
-                  child: Row(
-                  children: [
-                  Expanded(
-                  flex: 5,
-                  child: Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: TextField(
-                  maxLines: 1,
-                  autofocus: false,
-                  style: TextStyle(color: Color(0xff107163), fontSize:16),
-                  decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Search..',
-                  ),
-                  cursorColor: Color(0xff107163),
-                  ),
-                  ),
-                  ),
-                  Expanded(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.searchRoute);
-                    },
-                    child: Container(
-                    decoration: BoxDecoration(
-                    color: Colors.blue[200],
-                    borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                    child: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                    size: 25,
+                    fontWeight: FontWeight.w700,
                     ),
                     ),
                     ),
-                  ),
-                  ),
-                  ],
-                  ),
-                  ),
-                    // Container(
-                    //   child:Image.network("https://img.freepik.com/premium-vector/online-doctor-with-computer_23-2148525681.jpg?w=2000"),
-                    // ),
-                  Container(
-                  width:size.width ,
-                  margin: EdgeInsets.only(top:20,left:20),
-                  child: Stack(
-                  fit: StackFit.loose,
-                  children: [
-                  Container(
-                  child: Text(
-                  "Category",
-                  style: TextStyle(
-                  color: Colors.black,
-                  fontSize:18,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                  ),
-                  ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.allCategoryRoute);
-                    },
-                    child: Container(
-                    margin: EdgeInsets.only(right: 20, top: 1),
-                    child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                    'See all',
-                    style: TextStyle(
-                    color: Color(0xff5e5d5d),
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, Routes.allSpecialistsRoute);
+                      },
+                      child: Container(
+                      margin: EdgeInsets.only(right: 20, top: 1),
+                      child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                      'See all',
+                      style: TextStyle(
+                      color: Color(0xff5e5d5d),
+                      fontSize: 16,
+                      fontFamily: 'Roboto',
+                      ),
+                      ),
+                      ),
+                      ),
+                    )
+                    ],
                     ),
                     ),
+
+                    Container(
+                      child: Specialists(),
                     ),
-                    ),
-                  )
-                  ],
+                    ],
                   ),
-                  ),
-                  Container(
-                    width: size.width,
-                    height: 155,
-                    child: Category(),
-                  ),
-                  Container(
-                  width: size.width,
-                  margin: EdgeInsets.only(top: 20, left: 20),
-                  child: Stack(
-                  fit: StackFit.loose,
-                  children: [
-                  Container(
-                  child: Text(
-                  'Available Specialists',
-                  style: TextStyle(
-                  color: Color(0xff363636),
-                  fontSize: 18,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                  ),
-                  ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.allSpecialistsRoute);
-                    },
-                    child: Container(
-                    margin: EdgeInsets.only(right: 20, top: 1),
-                    child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                    'See all',
-                    style: TextStyle(
-                    color: Color(0xff5e5d5d),
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
-                    ),
-                    ),
-                    ),
-                    ),
-                  )
-                  ],
-                  ),
-                  ),
-                  Container(
-                    child: Specialists(),
-                  ),
-                  ],
                 ),
               ),
               drawer: MyDrawer(uid:authController.user.uid),
